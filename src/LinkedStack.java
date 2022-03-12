@@ -1,6 +1,6 @@
 public class LinkedStack<T> implements Stack<T>{
 
-    public LinkedList<T> list;
+    public LinkedList<T> list = new LinkedList<>();
 
     @Override
     public boolean isEmpty(){

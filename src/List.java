@@ -3,6 +3,6 @@ public interface List<T> {
     boolean isEmpty();
     int size();
     void addToFront(T data);
-    T removeFirst();
+    T removeFirst() throws EmptyListException;
 
 }

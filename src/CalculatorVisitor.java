@@ -2,30 +2,41 @@ import java.nio.charset.MalformedInputException;
 
 public class CalculatorVisitor implements Calculator, Visitor{
 
-    LinkedStack<Token> tokenStack;
+    LinkedStack<Token> tokenStack = new LinkedStack<>();
     
     private void pushOperand(Operand operand){
         tokenStack.push(operand);
     }
 
-    private void performOperation(Operator operator){
+    private void performOperation(Operator operator) throws MalformedExpressionException
+    {
       Operand firstOperand = (Operand) tokenStack.pop();
       Operand secondOperand = (Operand) tokenStack.pop();
-      int firstValue = firstOperand.getValue();
-      int secondValue = secondOperand.getValue();
-      int result = 0;
-      switch (operator.getOperation()){
-          case PLUS: result = firstValue + secondValue;
-          break;
-          case MINUS: result = secondValue - firstValue;
-          break;
-          case DIVISION: result = secondValue / firstValue;
-          break;
-          case MULTIPLICATION: result = firstValue * secondValue;
-          break;
+      if (firstOperand != null || secondOperand != null) {
+          int firstValue = firstOperand.getValue();
+          int secondValue = secondOperand.getValue();
+          int result = 0;
+          switch (operator.getOperation()) {
+              case PLUS:
+                  result = firstValue + secondValue;
+                  break;
+              case MINUS:
+                  result = firstValue - secondValue;
+                  break;
+              case DIVISION:
+                  result = firstValue / secondValue;
+                  break;
+              case MULTIPLICATION:
+                  result = firstValue * secondValue;
+                  break;
+          }
+          Operand operand = new Operand(this, result);
+          tokenStack.push(operand);
       }
-      Operand operand = new Operand(this, result);
-      tokenStack.push(operand);
+      else{
+          throw new MalformedExpressionException("There is not enough operands");
+      }
+
     }
 
     @Override
@@ -35,8 +46,12 @@ public class CalculatorVisitor implements Calculator, Visitor{
     }
 
     @Override
-    public void visit(Operator operator) {
-        performOperation(operator);
+    public void visit(Operator operator){
+        try {
+            performOperation(operator);
+        } catch (MalformedExpressionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
