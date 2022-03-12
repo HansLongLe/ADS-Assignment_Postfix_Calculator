@@ -1,15 +1,6 @@
 public class LinkedList<T> implements List<T> {
     private Node<T> head;
-    private List list;
     public int size;
-
-    @Override
-    public void addToFront(T data) {
-        Node<T> newNode = new Node<T>(data);
-        newNode.setNext(head);
-        head = newNode;
-        size++;
-    }
 
     @Override
     public boolean isEmpty() {
@@ -25,4 +16,10 @@ public class LinkedList<T> implements List<T> {
     public void addToFront(T data) {
 
     }
+
+    @Override
+    public T removeFirst() {
+        return null;
+    }
 }
+

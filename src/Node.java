@@ -1,19 +1,21 @@
 import javax.xml.crypto.Data;
 
 public class Node<T> {
-    public Data T;
+    private T data;
+    private Node Node;
 
-
-    public void setData(Data T) {
-        this.T = T;
+    public void setData(T data) {
+        this.data = data;
     }
 
-    public void getData(){
-        return T;
+    public T getData(){
+        return data;
     }
-    public void setNext(Node node){}
+    public void setNext(Node Node){
+        this.Node = Node;
+    }
 
     public Node getNext(){
-
+        return Node;
     }
 }

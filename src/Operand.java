@@ -1,9 +1,9 @@
-public class Operand {
+public class Operand extends Token {
 
     public int value;
 
-    public void accept(CalculatorVisitor visitor){
-
+    @Override
+    public void accept(CalculatorVisitor visitor) {
     }
 
     public int getValue() {
