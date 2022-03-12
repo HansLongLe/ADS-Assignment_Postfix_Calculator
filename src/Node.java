@@ -4,6 +4,10 @@ public class Node<T> {
     private T data;
     private Node Node;
 
+    public Node(T data) {
+        this.data = data;
+    }
+
     public void setData(T data) {
         this.data = data;
     }

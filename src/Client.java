@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 
 public class Client {
-    private CalculatorVisitor calculatorVisitor;
+    private CalculatorVisitor calculatorVisitor = new CalculatorVisitor();
     private Token token;
 
     public int evaluateExpression(ArrayList<Token> tokenList) {
-        return 0;
+        for (Token token : tokenList)
+        {
+            token.accept(calculatorVisitor);
+        }
+        return calculatorVisitor.getResult();
     }
 }

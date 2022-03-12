@@ -1,19 +1,19 @@
-public class LinkedStack<T> implements Stack{
+public class LinkedStack<T> implements Stack<T>{
 
     public LinkedList<T> list;
 
     @Override
     public boolean isEmpty(){
-        return false;
+        return list.isEmpty();
     }
 
     @Override
-    public void push(Object eim) {
-
+    public void push(T eim) {
+        list.addToFront(eim);
     }
 
     @Override
-    public Object pop() {
-        return null;
+    public T pop() {
+        return list.removeFirst();
     }
 }
